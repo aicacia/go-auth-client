@@ -1,0 +1,9 @@
+version: '3'
+
+tasks:
+  openapi:
+    cmds:
+      - rm -rf openapi
+      - openapi-generator-cli generate -i https://raw.githubusercontent.com/aicacia/rs-auth/refs/heads/main/openapi.json -g go -o 'openapi' --additional-properties=withGoMod=false,isGoSubmodule=true,packageName=openapi
+      - rm -rf openapi/README.md openapi/api openapi/docs openapi/test openapi/.travis.yml openapi/git_push.sh openapi/.gitignore openapi/.openapi-generator-ignore openapi/.openapi-generator
+      - go mod tidy
