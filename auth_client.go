@@ -10,8 +10,20 @@ func SetAuthorization(client *openapi.APIClient, token string) *openapi.APIClien
 	return client
 }
 
+func RemoveAuthorization(client *openapi.APIClient) *openapi.APIClient {
+	configuration := client.GetConfig()
+	delete(configuration.DefaultHeader, "Authorization")
+	return client
+}
+
 func SetTenentID(client *openapi.APIClient, tenentId string) *openapi.APIClient {
 	configuration := client.GetConfig()
 	configuration.AddDefaultHeader("Tenent-ID", tenentId)
+	return client
+}
+
+func RemoveTenentID(client *openapi.APIClient) *openapi.APIClient {
+	configuration := client.GetConfig()
+	delete(configuration.DefaultHeader, "Tenent-ID")
 	return client
 }
